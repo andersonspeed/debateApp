@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'home_page/index'
   resources :topics
   root 'home_page#index'
