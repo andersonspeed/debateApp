@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
   # POST /topics.json
   def create
     @topic = Topic.new(topic_params)
-
+    @topic.owner = current_user
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
@@ -69,6 +69,6 @@ class TopicsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def topic_params
-      params.require(:topic).permit(:title, :description)
+      params.require(:topic).permit(:title, :description,:numReplies,:wager)
     end
 end

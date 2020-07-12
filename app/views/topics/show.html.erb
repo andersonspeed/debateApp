@@ -9,6 +9,17 @@
   <strong>Description:</strong>
   <%= @topic.description %>
 </p>
-
+<p>
+  <strong>Max Replies:</strong>
+  <%= @topic.numReplies %>
+</p>
+<p>
+  <strong>Wager:</strong>
+  <%= @topic.wager %>
+</p>
+<p>
+  <strong>Creator:</strong>
+  <%= @topic.owner.username %>
+</p>
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>

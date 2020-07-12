@@ -16,6 +16,9 @@
       <tr>
         <td><%= topic.title %></td>
         <td><%= topic.description %></td>
+        <td><%= topic.numReplies %></td>
+        <td><%= topic.wager %></td>
+        <td><%= topic.owner.username %></td>
         <td><%= link_to 'Show', topic %></td>
         <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
         <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
