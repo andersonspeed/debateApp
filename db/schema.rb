@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_185858) do
+ActiveRecord::Schema.define(version: 2020_07_13_183019) do
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.string "title"
@@ -23,6 +29,8 @@ ActiveRecord::Schema.define(version: 2020_07_10_185858) do
     t.boolean "open"
     t.boolean "active"
     t.boolean "complete"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_topics_on_category_id"
     t.index ["owner_id"], name: "index_topics_on_owner_id"
   end
 
@@ -39,5 +47,6 @@ ActiveRecord::Schema.define(version: 2020_07_10_185858) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "topics", "categories"
   add_foreign_key "topics", "users", column: "owner_id"
 end

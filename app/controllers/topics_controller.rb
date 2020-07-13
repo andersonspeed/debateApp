@@ -14,6 +14,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
+    @categories = Category.all
     @topic = Topic.new
   end
 

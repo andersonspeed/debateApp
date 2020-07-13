@@ -28,8 +28,15 @@
 
   <div class="field">
     <%= form.label :wager %>
-    <%= form.text_area :wager %>
+    <%= form.text_field :wager %>
   </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.select :category, options_from_collection_for_select(@categories, :id, :name) %>
+    <%=link_to "New Category", new_category_path %>
+  </div>
+  <div class="field">
 
 
   <div class="actions">
