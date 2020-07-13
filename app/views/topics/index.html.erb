@@ -15,8 +15,12 @@
   </thead>
 
   <tbody>
-    <% @topics.each do |topic| %>
-      <tr>
+    <% @categories.each do |cat| %>
+    <tr class = "category-row">
+      <td><%= cat.name %></td>
+    </tr>
+    <% @topics.where("category_id = ?", cat.id).each do |topic| %>
+      <tr class = "topic-row">
         <td><%= topic.title %></td>
         <td><%= topic.description %></td>
         <td><%= topic.numReplies %></td>
@@ -24,12 +28,12 @@
         <td><%= topic.owner.username %></td>
         <td><%= link_to 'Show', topic %></td>
         <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }%></td>
       </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Topic', new_topic_path %>

@@ -1,9 +1,12 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   # GET /topics
   # GET /topics.json
   def index
+    @categories = Category.all
     @topics = Topic.all
   end
 
@@ -25,7 +28,10 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
+    @categories = Category.all
     @topic = Topic.new(topic_params)
+
+
     @topic.owner = current_user
     respond_to do |format|
       if @topic.save
@@ -70,6 +76,6 @@ class TopicsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def topic_params
-      params.require(:topic).permit(:title, :description,:numReplies,:wager)
+      params.require(:topic).permit(:title, :description,:numReplies,:wager,:category_id)
     end
 end

@@ -1,5 +1,5 @@
 <h1>New Topic</h1>
 
-<%= render 'form', topic: @topic %>
+<%= render partial: 'form', locals:{topic: @topic, cats: @categories} %>
 
 <%= link_to 'Back', topics_path %>
