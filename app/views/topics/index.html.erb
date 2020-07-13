@@ -2,7 +2,7 @@
 
 <h1>Topics</h1>
 
-<table>
+<table cellspacing="0">
   <thead>
     <tr>
       <th>Title</th>
@@ -17,10 +17,10 @@
   <tbody>
     <% @categories.each do |cat| %>
     <tr class = "category-row">
-      <td><%= cat.name %></td>
+      <td colspan = "8"><%= cat.name %></td>
     </tr>
-    <% @topics.where("category_id = ?", cat.id).each do |topic| %>
-      <tr class = "topic-row">
+    <% @topics.where("category_id = ?", cat.id).each_with_index do |topic, counter| %>
+      <tr class = "<%= counter%2==0?  'topic-row odd' :  'topic-row even'%>">
         <td><%= topic.title %></td>
         <td><%= topic.description %></td>
         <td><%= topic.numReplies %></td>

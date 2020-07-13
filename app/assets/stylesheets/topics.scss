@@ -1,3 +1,26 @@
 // Place all the styles related to the Topics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+$base-color: #d1a8ff;
+
+$accent-color: #6a37a3;
+.category-row{
+  background-color: $accent-color;
+  text-align: left;
+  text-emphasis: bold;
+  align-items: center;
+}
+
+.topic-row{
+  text-align: left;
+  align-items: center;
+}
+
+.odd{
+  background-color: $base-color;
+
+}
+.even{
+  background-color: $accent-color;
+
+}
