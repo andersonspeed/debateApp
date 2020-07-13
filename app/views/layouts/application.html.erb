@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Debateapp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Arguit</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <div class = "navbar">
+    <li> ARGUIT </li>
+    <nav>
+      <ul>
+        <li>
+          <%=
+          link_to_if(current_user.nil?, "Login", new_user_session_path, class: 'btn btn-primary m-5') do
+          link_to('Sign out',  destroy_user_session_path, :method => 'delete', class: 'btn btn-danger m-5')
+          end
+          %>
+        </li>
+        <li>
+          <%= link_to 'New Topic', new_topic_path%>
+        </li>
+        <li>
+          <%= link_to 'Browse Topics',topics_path %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <%=yield%>
+</body>
+
 </html>
