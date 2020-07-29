@@ -1,0 +1,2 @@
+module Topic::ActiveDebateHelper
+end

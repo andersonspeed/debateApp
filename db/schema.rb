@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_13_183019) do
+ActiveRecord::Schema.define(version: 2020_07_29_160147) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "content"
+    t.integer "owner_id"
+    t.integer "topic_id"
+    t.index ["owner_id"], name: "index_comments_on_owner_id"
+    t.index ["topic_id"], name: "index_comments_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|

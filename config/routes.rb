@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :categories
   devise_for :users
   get 'home_page/index'
-  resources :topics
+  resources :topics do
+    resources :comments
+  end
+  resources :active_debates
+
   root 'home_page#index'
 
 #  devise_for :users, :controllers => {:registrations => "users/registrations"}

@@ -1,6 +1,6 @@
 <h1>Editing Topic</h1>
 
-<%= render 'form', topic: @topic %>
+<%= render partial: 'form', locals:{topic: @topic, cats: @categories} %>
 
 <%= link_to 'Show', @topic %> |
 <%= link_to 'Back', topics_path %>

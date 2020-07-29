@@ -21,5 +21,6 @@
   <strong>Creator:</strong>
   <%= @topic.owner.username %>
 </p>
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_topic_path(@topic)){} %>
 <%= link_to 'Back', topics_path %>
+<%= link_to_if(@topic.open,'Join', active_debate_path(@topic), method: :patch){} %>
