@@ -1,0 +1,46 @@
+<%= form_with(model: topic, local: true) do |form| %>
+  <% if topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+        <% topic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Number of Replies" %>
+    <%= form.text_field :numReplies %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wager %>
+    <%= form.text_field :wager %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%=cats.all%>
+    <%= collection_select(:topic,:category_id, cats.all, :id, :name) %>
+    <%=link_to "New Category", new_category_path %>
+  </div>
+  <div class="field">
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

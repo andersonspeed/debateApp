@@ -1,0 +1,2 @@
+module Judging::TopicsHelper
+end

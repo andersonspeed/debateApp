@@ -1,0 +1,2 @@
+module Pending::TopicsHelper
+end
