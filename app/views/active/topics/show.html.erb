@@ -1,1 +1,29 @@
-<p>Hello Namespaced Debates!</p>
+<p>Active Topic</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @topic.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @topic.description %>
+</p>
+<p>
+  <strong>Max Replies:</strong>
+  <%= @topic.numReplies %>
+</p>
+<p>
+  <strong>Wager:</strong>
+  <%= @topic.wager %>
+</p>
+<p>
+  <strong>Creator:</strong>
+  <%= @topic.owner.username %>
+</p>
+
+
+
+<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_pending_topic_path(@topic)){} %>
+<%= link_to 'Back', topics_path %>
+<%= link_to_if(@topic.open,'Join', active_topic_path(@topic), method: :patch){} %>
