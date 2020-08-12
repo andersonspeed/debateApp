@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_160147) do
+ActiveRecord::Schema.define(version: 2020_08_12_153711) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -40,7 +40,11 @@ ActiveRecord::Schema.define(version: 2020_07_29_160147) do
     t.boolean "active"
     t.boolean "complete"
     t.integer "category_id"
+    t.integer "challenger_id"
+    t.integer "currentCommenter_id"
     t.index ["category_id"], name: "index_topics_on_category_id"
+    t.index ["challenger_id"], name: "index_topics_on_challenger_id"
+    t.index ["currentCommenter_id"], name: "index_topics_on_currentCommenter_id"
     t.index ["owner_id"], name: "index_topics_on_owner_id"
   end
 
@@ -58,5 +62,7 @@ ActiveRecord::Schema.define(version: 2020_07_29_160147) do
   end
 
   add_foreign_key "topics", "categories"
+  add_foreign_key "topics", "users", column: "challenger_id"
+  add_foreign_key "topics", "users", column: "currentCommenter_id"
   add_foreign_key "topics", "users", column: "owner_id"
 end

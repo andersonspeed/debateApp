@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Active::CommentsController < ApplicationController
   before_action :get_topic
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
     @comment.owner = current_user
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to active_topic_path(@topic), namespace: 'active', notice: 'Comment was successfully created.' }
+        format.html { redirect_to topic_comments_path(@topic), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }

@@ -4,7 +4,6 @@
   <strong>Title:</strong>
   <%= @topic.title %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= @topic.description %>
@@ -17,13 +16,19 @@
   <strong>Wager:</strong>
   <%= @topic.wager %>
 </p>
+
 <p>
   <strong>Creator:</strong>
   <%= @topic.owner.username %>
 </p>
 
+<p>
+  <strong>Challenger:</strong>
+  <%= @topic.challenger.username %>
+</p>
 
+<%= render @topic.comments, namespace: 'active'%>
 
-<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_pending_topic_path(@topic)){} %>
+<%= render 'active/comments/form'%>
+
 <%= link_to 'Back', topics_path %>
-<%= link_to_if(@topic.open,'Join', active_topic_path(@topic), method: :patch){} %>

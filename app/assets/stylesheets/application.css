@@ -35,8 +35,8 @@ align-items: center;
 body{
   margin: 0;
   padding:0;
-  background-color: #b2ebf2;;
-  color: white;
+  background-color: white;
+  color: black;
   font-family: sans-serif;
   text-align: center;
  }
@@ -81,5 +81,5 @@ nav{
 
 a{
   text-decoration: none;
-  color: white;
+  color: black;
 }
