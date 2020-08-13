@@ -84,4 +84,12 @@ class Pending::TopicsController < ApplicationController
     def topic_params
       params.require(:topic).permit(:title, :description,:numReplies,:wager,:category_id)
     end
+
+    def check_topic_status
+      if @topic.active
+        redirect_to active_topic_path(@topic)
+      elsif @topic.complete
+        redirect_to judging_topic_path(@topic)
+      end
+    end
 end

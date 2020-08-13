@@ -1,4 +1,4 @@
-<p>Active Topic</p>
+<p>Complete Topic</p>
 
 <p>
   <strong>Title:</strong>
@@ -27,8 +27,6 @@
   <%= @topic.challenger.username %>
 </p>
 
-<%= render @topic.comments, namespace: 'active'%>
-
-<%= render 'active/comments/form' if @topic.currentCommenter_id == current_user.id%>
+<%= render partial: 'active/comments/comment', collection: @topic.comments %>
 
 <%= link_to 'Back', topics_path %>

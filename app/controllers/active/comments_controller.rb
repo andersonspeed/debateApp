@@ -27,6 +27,7 @@ class Active::CommentsController < ApplicationController
   def create
     @comment = @topic.comments.new(comment_params)
     @comment.owner = current_user
+    @topic.addComment
     @topic.updateCurrentCommenter
     respond_to do |format|
       if @comment.save

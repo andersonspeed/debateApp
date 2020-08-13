@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_153711) do
+ActiveRecord::Schema.define(version: 2020_08_13_215037) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_08_12_153711) do
     t.integer "category_id"
     t.integer "challenger_id"
     t.integer "currentCommenter_id"
+    t.integer "replyCount"
     t.index ["category_id"], name: "index_topics_on_category_id"
     t.index ["challenger_id"], name: "index_topics_on_challenger_id"
     t.index ["currentCommenter_id"], name: "index_topics_on_currentCommenter_id"
