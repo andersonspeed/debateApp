@@ -35,6 +35,7 @@ class Pending::TopicsController < ApplicationController
 
 
     @topic.owner = current_user
+    @topic.startDebate
     @topic.open = true;
     @topic.active = false;
     @topic.complete = false;

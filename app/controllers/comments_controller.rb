@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @topic.comments.new(comment_params)
-    @comment.owner = current_user
     respond_to do |format|
       if @comment.save
         format.html { redirect_to active_topic_path(@topic), namespace: 'active', notice: 'Comment was successfully created.' }

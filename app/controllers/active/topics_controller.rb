@@ -1,11 +1,11 @@
 class Active::TopicsController < ApplicationController
 before_action :set_topic
 def update
-  @topic.active = true
-  @topic.open = false
+
+  @topic.startDebate
+
   @topic.challenger_id = current_user.id
 
-  @topic.save
   redirect_to active_topic_path(@topic)
 end
 

@@ -27,9 +27,10 @@ class Active::CommentsController < ApplicationController
   def create
     @comment = @topic.comments.new(comment_params)
     @comment.owner = current_user
+    @topic.updateCurrentCommenter
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to topic_comments_path(@topic), notice: 'Comment was successfully created.' }
+        format.html { redirect_to active_topic_path(@topic), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }

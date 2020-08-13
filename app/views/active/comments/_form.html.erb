@@ -1,4 +1,4 @@
-<%= form_with(model: [@topic, @topic.comments.build], local: true) do |form| %>
+<%= form_with(model: [:active, @topic, @topic.comments.build], local: true) do |form| %>
   <div class="field">
     <%= form.label "Enter Reply" %>
     <%= form.text_area :content %>
