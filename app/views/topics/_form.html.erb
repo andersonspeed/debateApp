@@ -15,7 +15,6 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
-
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description %>
@@ -37,7 +36,6 @@
     <%= collection_select(:topic,:category_id, cats.all, :id, :name) %>
     <%=link_to "New Category", new_category_path %>
   </div>
-  <div class="field">
 
 
   <div class="actions">
