@@ -22,7 +22,7 @@ def set_topic
 end
 
 def check_topic_status
-  if !@topic.active & !@topic.complete
+  if !@topic.active & !@topic.judging & !@topic.complete
     redirect_to pending_topic_path(@topic)
   elsif @topic.complete
     redirect_to judging_topic_path(@topic)

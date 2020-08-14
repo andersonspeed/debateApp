@@ -2,7 +2,9 @@ class Topic < ApplicationRecord
   belongs_to :owner, class_name: :User
   belongs_to :category
   belongs_to :challenger, class_name: :User, optional: true
-  has_many :comments
+  has_many :comments, foreign_key: :topic_id
+  has_many :judgements, foreign_key: :topic_id
+  belongs_to :current_commenter, class_name: :User, optional: true
   validates :numReplies, presence: true, numericality: { only_integer: true }
   validates :wager, presence: true, numericality: true
 
@@ -11,15 +13,15 @@ class Topic < ApplicationRecord
     self.active = true
     self.complete = false
     self.replyCount = 0
-    self.currentCommenter_id = self.challenger_id
+    self.current_commenter = self.challenger
     self.save
   end
 
   def updateCurrentCommenter
-    if self.currentCommenter_id == self.owner_id
-      self.currentCommenter_id = self.challenger_id
+    if self.current_commenter == self.owner
+      self.current_commenter= self.challenger
     else
-      self.currentCommenter_id = self.owner_id
+      self.current_commenter = self.owner
     end
     self.save
   end
@@ -27,14 +29,14 @@ class Topic < ApplicationRecord
   def addComment
     self.replyCount = self.replyCount + 1
     if self.replyCount == self.numReplies
-      self.endDebate
+      self.sendDebateToJudging
     end
     self.save
   end
 
-  def endDebate
+  def sendDebateToJudging
     self.active = false
-    self.complete = true
+    self.judging  = true
     self.save
   end
 end

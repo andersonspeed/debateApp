@@ -1,0 +1,20 @@
+<%= form_with(model:  [:judging, @topic, @topic.judgements.build], local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :opinion %>
+    <%= form.text_field :opinion %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Creator"%>
+    <%= form.radio_button :winner_selection, 'creator' %>
+  </div>
+
+    <div class="field">
+      <%= form.label "Challenger"%>
+      <%= form.radio_button :winner_selection, 'challenger' %>
+    </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

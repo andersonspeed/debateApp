@@ -16,17 +16,8 @@
   <strong>Wager:</strong>
   <%= @topic.wager %>
 </p>
-
 <p>
-  <strong>Creator:</strong>
-  <%= @topic.owner.username %>
+<%= render partial: 'judging/comments/comment', collection: @topic.comments %>
+<%= render partial: 'judging/judgements/form', topic: @topic %>
 </p>
-
-<p>
-  <strong>Challenger:</strong>
-  <%= @topic.challenger.username %>
-</p>
-
-<%= render partial: 'active/comments/comment', collection: @topic.comments %>
-
 <%= link_to 'Back', topics_path %>

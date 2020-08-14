@@ -10,30 +10,19 @@
       <th>Replies</th>
       <th>Wager</th>
       <th>Owner</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @categories.each do |cat| %>
     <tr class = "category-row">
-      <td colspan = "8"><%= cat.name %></td>
+      <td colspan = "9"><%= cat.name %></td>
     </tr>
-    <% topics = @topics.where("category_id = ?", cat.id).each_with_index do |topic, counter| %>
-      <tr class = "<%= counter%2==0?  'topic-row odd' :  'topic-row even'%>">
-        <td><%= topic.title %></td>
-        <td><%= topic.description %></td>
-        <td><%= topic.numReplies %></td>
-        <td><%= topic.wager %></td>
-        <td><%= topic.owner.username %></td>
-        <td><%= link_to_if(!topic.active, 'Show',topic){}%>
-      <%= link_to_if(topic.active, 'Show',active_topic_path(topic)){}%></td>
+<%= render @topics.where("category_id = ?", cat.id) %>
 
-        <td><%=link_to_if(topic.owner_id == current_user.id, 'Edit', edit_topic_path(topic)){}%> </td>
-        <td><%= link_to_if(topic.owner_id == current_user.id, 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }){}%></td>
-      </tr>
-    <% end %>
-    <% end %>
+
+<% end %>
   </tbody>
 </table>
 <br>

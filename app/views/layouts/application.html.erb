@@ -29,7 +29,9 @@
           <%= link_to 'Browse Topics',topics_path %>
         </li>
         <li>
-          <%= link_to 'Profile',user_path(current_user) %>
+          <% if !current_user.nil? %>
+            <%=link_to 'Profile',user_path(current_user) %>
+            <%end%>
         </li>
       </ul>
     </nav>
