@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :categories
   devise_for :users
+  resources :users, only: [:show]
   get 'home_page/index'
   resources :topics do
     resources :comments

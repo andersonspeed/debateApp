@@ -19,7 +19,7 @@
     <tr class = "category-row">
       <td colspan = "8"><%= cat.name %></td>
     </tr>
-    <% @topics.where("category_id = ?", cat.id).each_with_index do |topic, counter| %>
+    <% topics = @topics.where("category_id = ?", cat.id).each_with_index do |topic, counter| %>
       <tr class = "<%= counter%2==0?  'topic-row odd' :  'topic-row even'%>">
         <td><%= topic.title %></td>
         <td><%= topic.description %></td>

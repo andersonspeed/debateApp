@@ -1,0 +1,36 @@
+<p>User page</p>
+<p>
+  <strong><%= @user.username %></strong>
+</p>
+<p><strong>My topics</strong></p>
+<table cellspacing="0">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Replies</th>
+      <th>Wager</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @user.topics %>
+  </tbody>
+</table>
+<p><strong>topics I've challenged</strong></p>
+<table cellspacing="0">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Replies</th>
+      <th>Wager</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @user.challenger_topics %>
+  </tbody>
+</table>
