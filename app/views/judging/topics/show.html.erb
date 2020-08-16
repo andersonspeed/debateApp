@@ -18,7 +18,7 @@
 </p>
 <p>
 <%= render partial: 'judging/comments/comment', collection: @topic.comments %>
-<% if !(@topic.owner == current_user or @topic.challenger == current_user)%>
+<% if canJudge(current_user,@topic)%>
 <%= render(partial: 'judging/judgements/form', topic: @topic) %>
 <% end %>
 </p>
