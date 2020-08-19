@@ -28,7 +28,6 @@
   <%= form.text_field :description, class: 'form-control' %>
 </div>
 
-
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Number of Replies
@@ -45,17 +44,20 @@
   <%= form.text_field :wager, class: 'form-control' %>
 </div>
 
+
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Category
-    </span>
-  </div>
-  <%=cats.all%>
-  <%= collection_select(:topic,:category_id, cats.all, :id, :name)%>
-  <%=link_to "New Category", new_category_path %>
+    <%=link_to "New Category", new_category_path, class: "btn btn-light"%>
+
+
+    <%=collection_select(:topic, :category_id, cats.all, :id, :name, prompt: 'Select Existing Category')%>
+</div>
 </div>
 
+
 <div class="actions">
-  <%= form.submit%>
+  <%= form.submit "Create Topic", class:'btn btn-primary' %>
+  <%= link_to 'Back to Browse', topics_path, class: 'btn btn-light' %>
 </div>
-<% end %>
+
+<%end%>

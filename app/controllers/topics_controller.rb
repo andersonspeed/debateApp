@@ -27,6 +27,8 @@ class TopicsController < ApplicationController
     @topics = Topic.all
   end
 
+
+
   # POST /topics
   # POST /topics.json
   def create
