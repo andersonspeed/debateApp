@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
   resources :categories
   devise_for :users
+  resources :users, only: [:show]
   get 'home_page/index'
   resources :topics do
     resources :comments
@@ -20,6 +22,8 @@ Rails.application.routes.draw do
   namespace :judging do
     resources :topics do
       resources :comments
+      resources :judgements
+
     end
   end
 
@@ -28,7 +32,6 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
-
   root 'home_page#index'
 
   #  devise_for :users, :controllers => {:registrations => "users/registrations"}

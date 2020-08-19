@@ -1,0 +1,7 @@
+<p><strong><%if comment.owner == comment.topic.owner %>
+  Creator:
+  <%else%>
+  Challenger:
+  <%end%>
+  </strong>
+<%= comment.content %></p>

@@ -35,6 +35,7 @@ class Pending::TopicsController < ApplicationController
 
 
     @topic.owner = current_user
+    @topic.startDebate
     @topic.open = true;
     @topic.active = false;
     @topic.complete = false;
@@ -82,5 +83,13 @@ class Pending::TopicsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def topic_params
       params.require(:topic).permit(:title, :description,:numReplies,:wager,:category_id)
+    end
+
+    def check_topic_status
+      if @topic.active
+        redirect_to active_topic_path(@topic)
+      elsif @topic.complete
+        redirect_to judging_topic_path(@topic)
+      end
     end
 end

@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  before_action :check_topic_status, except: :index
 
   # GET /topics
   # GET /topics.json
@@ -81,5 +81,13 @@ class TopicsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def topic_params
       params.require(:topic).permit(:title, :description,:numReplies,:wager,:category_id)
+    end
+
+    def check_topic_status
+      if @topic.active
+        redirect_to active_topic_path(@topic)
+      elsif @topic.complete
+        redirect_to judging_topic_path(@topic)
+      end
     end
 end

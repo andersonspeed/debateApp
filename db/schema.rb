@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_160147) do
+ActiveRecord::Schema.define(version: 2020_08_14_182811) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -28,6 +28,21 @@ ActiveRecord::Schema.define(version: 2020_07_29_160147) do
     t.index ["topic_id"], name: "index_comments_on_topic_id"
   end
 
+  create_table "judgements", force: :cascade do |t|
+    t.text "opinion"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "owner_id"
+    t.integer "topic_id"
+    t.integer "winner_id"
+    t.integer "loser_id"
+    t.string "winner_selection"
+    t.index ["loser_id"], name: "index_judgements_on_loser_id"
+    t.index ["owner_id"], name: "index_judgements_on_owner_id"
+    t.index ["topic_id"], name: "index_judgements_on_topic_id"
+    t.index ["winner_id"], name: "index_judgements_on_winner_id"
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -40,8 +55,20 @@ ActiveRecord::Schema.define(version: 2020_07_29_160147) do
     t.boolean "active"
     t.boolean "complete"
     t.integer "category_id"
+    t.integer "challenger_id"
+    t.integer "currentCommenter_id"
+    t.integer "replyCount"
+    t.boolean "judging"
+    t.integer "winner_id"
+    t.integer "loser_id"
+    t.integer "owner_votecount"
+    t.integer "challenger_votecount"
     t.index ["category_id"], name: "index_topics_on_category_id"
+    t.index ["challenger_id"], name: "index_topics_on_challenger_id"
+    t.index ["currentCommenter_id"], name: "index_topics_on_currentCommenter_id"
+    t.index ["loser_id"], name: "index_topics_on_loser_id"
     t.index ["owner_id"], name: "index_topics_on_owner_id"
+    t.index ["winner_id"], name: "index_topics_on_winner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,5 +85,9 @@ ActiveRecord::Schema.define(version: 2020_07_29_160147) do
   end
 
   add_foreign_key "topics", "categories"
+  add_foreign_key "topics", "users", column: "challenger_id"
+  add_foreign_key "topics", "users", column: "currentCommenter_id"
+  add_foreign_key "topics", "users", column: "loser_id"
   add_foreign_key "topics", "users", column: "owner_id"
+  add_foreign_key "topics", "users", column: "winner_id"
 end

@@ -1,1 +1,12 @@
-<p>Hello World!</p>
+<tr>
+  <td><%= topic.title %></td>
+  <td><%= topic.description %></td>
+  <td><%= topic.numReplies %></td>
+  <td><%= topic.wager %></td>
+  <td><%= topic.owner.username %></td>
+  <td><%= link_to_if(!topic.active, 'Show',topic){}%>
+      <%= link_to_if(topic.active, 'Show',active_topic_path(topic)){}%></td>
+  <td><%=link_to_if(topic.owner_id == current_user.id, 'Edit', edit_topic_path(topic)){}%> </td>
+  <td><%= link_to_if(topic.owner_id == current_user.id, 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }){}%></td>
+  <td><%= link_to_if(topic.judging, 'Judge', judging_topic_path(topic)){}%></td>
+</tr>

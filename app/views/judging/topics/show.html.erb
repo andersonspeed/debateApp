@@ -1,4 +1,4 @@
-<p>Active Topic</p>
+<p>Complete Topic</p>
 
 <p>
   <strong>Title:</strong>
@@ -16,19 +16,10 @@
   <strong>Wager:</strong>
   <%= @topic.wager %>
 </p>
-
 <p>
-  <strong>Creator:</strong>
-  <%= @topic.owner.username %>
+<%= render partial: 'judging/comments/comment', collection: @topic.comments %>
+<% if canJudge(current_user,@topic)%>
+<%= render(partial: 'judging/judgements/form', topic: @topic) %>
+<% end %>
 </p>
-
-<p>
-  <strong>Challenger:</strong>
-  <%= @topic.challenger.username %>
-</p>
-
-<%= render @topic.comments, namespace: 'active'%>
-
-<%= render 'active/comments/form' if @topic.current_commenter == current_user%>
-
 <%= link_to 'Back', topics_path %>
