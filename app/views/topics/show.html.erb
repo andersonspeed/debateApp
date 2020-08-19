@@ -1,27 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  I GUESS WE'RE HERE
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @topic.description %>
-</p>
-<p>
-  <strong>Max Replies:</strong>
-  <%= @topic.numReplies %>
-</p>
-<p>
-  <strong>Wager:</strong>
-  <%= @topic.wager %>
-</p>
-<p>
-  <strong>Creator:</strong>
-  <%= @topic.owner.username %>
-</p>
-<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_pending_topic_path(@topic)){} %>
-<%= link_to 'Back', topics_path %>
+<%=  stylesheet_link_tag 'topics', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <div class="row justify-content-center text-left" >
+    <div class="col-auto">
+<table class="table  table-borderless table-dark">
+<tbody>
+  <tr>
+      <td scope = 'row'>  <strong>Title:</strong> <%= @topic.title %> </td>
+</tr>
+<tr>
+      <td scope =  'row'>  <strong>Description:</strong>
+       <%= @topic.description %> </td>
+<tr>
+      <td scope =  'row'>  <strong>Number of Replies:</strong>
+      <%= @topic.numReplies %> </td>
+</tr>
+<tr>
+      <td scope =  'row'>  <strong>Wager:</strong>
+       $<%= @topic.wager %> </td>
+</tr>
+<tr>
+      <td scope =  'row'>  <strong>Owner:</strong>
+        <%= @topic.owner.username %> </td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+</div>
+<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_topic_path(@topic), class: 'btn btn-primary' )%></td>
+<%= link_to 'Back to Browse', topics_path, class: 'btn btn-light' %>
 <%= link_to_if(@topic.open,'Join', active_topic_path(@topic), method: :patch){} %>

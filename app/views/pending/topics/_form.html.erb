@@ -1,46 +1,63 @@
 <%= form_with(model: topic, local: true) do |form| %>
-  <% if topic.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+<% if topic.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
 
-      <ul>
-        <% topic.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Number of Replies" %>
-    <%= form.text_field :numReplies %>
-  </div>
-
-  <div class="field">
-    <%= form.label :wager %>
-    <%= form.text_field :wager %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%=cats.all%>
-    <%= collection_select(:topic,:category_id, cats.all, :id, :name) %>
-    <%=link_to "New Category", new_category_path %>
-  </div>
-  <div class="field">
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <ul>
+    <% topic.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Title
+    </span>
+  </div>
+  <%= form.text_field :title, class: 'form-control' %>
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Description
+    </span>
+  </div>
+  <%= form.text_field :description, class: 'form-control' %>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Number of Replies
+    </span>
+  </div>
+  <%= form.text_field :numReplies, class: 'form-control' %>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Wager
+    </span>
+  </div>
+  <%= form.text_field :wager, class: 'form-control' %>
+</div>
+
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <%=link_to "New Category", new_category_path, class: "btn btn-light"%>
+
+
+    <%=collection_select(:topic, :category_id, cats.all, :id, :name, prompt: 'Select Existing Category')%>
+</div>
+</div>
+
+
+<div class="actions">
+  <%= form.submit "Create Topic", class:'btn btn-primary' %>
+  <%= link_to 'Back to Browse', topics_path, class: 'btn btn-light' %>
+</div>
+
+<%end%>

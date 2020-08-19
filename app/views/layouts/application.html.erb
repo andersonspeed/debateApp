@@ -1,41 +1,77 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Arguit</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-</head>
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <title>ARGUIT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<body>
-  <div class = "navbar container">
-    <li> ARGUIT </li>
-    <nav>
-      <ul>
-        <li>
-          <%=
-          link_to_if(current_user.nil?, "Login", new_user_session_path, class: 'btn btn-primary m-5') do
-          link_to('Sign out',  destroy_user_session_path, :method => 'delete', class: 'btn btn-danger m-5')
-          end
-          %>
-        </li>
-        <li>
-          <%= link_to 'New Topic', new_pending_topic_path%>
-        </li>
-        <li>
-          <%= link_to 'Browse Topics',topics_path %>
-        </li>
-      </ul>
-    </nav>
-  </div>
-<div class = "main container">
-  <%=yield%>
-  </div>
-<footer>
-</footer>
-</body>
+    <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/cover/">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
+
+
+
+
+
+
+    <!-- Bootstrap core CSS -->
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+
+  </head>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class = 'float-md-left mb-0' > <%=link_to 'ARGUIT', home_page_index_path, class: "text-white text-decoration-none"%></h3>
+      <nav class="nav nav-masthead justify-content-center float-md-right">
+          <%=link_to_if(current_user.nil?, "Login", new_user_session_path, class:"nav-link"  ) do
+          link_to('Sign Out',  destroy_user_session_path, :method => 'delete', class:"nav-link" )
+        end%>
+        <%=link_to 'New Topic', new_pending_topic_path, class:"nav-link" %>
+        <%=link_to 'Browse Topics',topics_path, class:"nav-link" %>
+
+
+      </nav>
+    </div>
+  </header>
+
+  <div class = "main container">
+    <%=yield%>
+  </div>
+
+  <footer class="mt-auto text-white-50">
+    <p></p>
+  </footer>
+</div>
+
+
+
+  </body>
 </html>
