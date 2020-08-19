@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :check_topic_status, except: :index
+  before_action :check_topic_status, except: [:index, :new, :create]
 
   # GET /topics
   # GET /topics.json

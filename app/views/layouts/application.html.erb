@@ -10,8 +10,7 @@
 
     <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/cover/">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <p class="notice"><%= notice %></p>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <p class="alert"><%= alert %></p>
 
 
@@ -52,7 +51,7 @@
       <h3 class = 'float-md-left mb-0' > <%=link_to 'ARGUIT', home_page_index_path, class: "text-white text-decoration-none"%></h3>
       <nav class="nav nav-masthead justify-content-center float-md-right">
           <%=link_to_if(current_user.nil?, "Login", new_user_session_path, class:"nav-link"  ) do
-          link_to('Sign Out',  destroy_user_session_path, :method => 'delete', class:"nav-link" )
+          link_to('Sign Out',  destroy_user_session_path, method: "delete", class:"nav-link" )
         end%>
         <%=link_to 'New Topic', new_pending_topic_path, class:"nav-link" %>
         <%=link_to 'Browse Topics',topics_path, class:"nav-link" %>

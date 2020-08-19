@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 2020_08_14_182811) do
     t.boolean "active"
     t.boolean "complete"
     t.integer "category_id"
-    t.integer "challenger_id"
     t.integer "currentCommenter_id"
     t.integer "replyCount"
     t.boolean "judging"
@@ -64,7 +63,6 @@ ActiveRecord::Schema.define(version: 2020_08_14_182811) do
     t.integer "owner_votecount"
     t.integer "challenger_votecount"
     t.index ["category_id"], name: "index_topics_on_category_id"
-    t.index ["challenger_id"], name: "index_topics_on_challenger_id"
     t.index ["currentCommenter_id"], name: "index_topics_on_currentCommenter_id"
     t.index ["loser_id"], name: "index_topics_on_loser_id"
     t.index ["owner_id"], name: "index_topics_on_owner_id"
@@ -85,7 +83,6 @@ ActiveRecord::Schema.define(version: 2020_08_14_182811) do
   end
 
   add_foreign_key "topics", "categories"
-  add_foreign_key "topics", "users", column: "challenger_id"
   add_foreign_key "topics", "users", column: "currentCommenter_id"
   add_foreign_key "topics", "users", column: "loser_id"
   add_foreign_key "topics", "users", column: "owner_id"

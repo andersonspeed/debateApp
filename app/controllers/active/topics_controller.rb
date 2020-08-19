@@ -4,7 +4,7 @@ before_action :check_topic_status, except: :update
 def update
   @topic.startDebate
 
-  @topic.challenger_id = current_user.id
+  @topic.challenger = current_user
 
   redirect_to active_topic_path(@topic)
 end
