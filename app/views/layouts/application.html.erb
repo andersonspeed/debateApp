@@ -10,8 +10,8 @@
 
     <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/cover/">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <p class="alert"><%= alert %></p>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 
 
 
@@ -62,6 +62,7 @@
   </header>
 
   <div class = "main container">
+    <p id="notice"><%= notice %></p>
     <%=yield%>
   </div>
 
