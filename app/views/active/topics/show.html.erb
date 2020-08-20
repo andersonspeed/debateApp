@@ -29,6 +29,6 @@
 
 <%= render @topic.comments, namespace: 'active'%>
 
-<%= render 'active/comments/form' if @topic.current_commenter == current_user%>
+<%= render 'active/comments/form' if @topic.currentCommenter == current_user%>
 
 <%= link_to 'Back', topics_path %>

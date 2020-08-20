@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_14_182811) do
+ActiveRecord::Schema.define(version: 2020_08_19_210447) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -62,7 +62,9 @@ ActiveRecord::Schema.define(version: 2020_08_14_182811) do
     t.integer "loser_id"
     t.integer "owner_votecount"
     t.integer "challenger_votecount"
+    t.integer "challenger_id"
     t.index ["category_id"], name: "index_topics_on_category_id"
+    t.index ["challenger_id"], name: "index_topics_on_challenger_id"
     t.index ["currentCommenter_id"], name: "index_topics_on_currentCommenter_id"
     t.index ["loser_id"], name: "index_topics_on_loser_id"
     t.index ["owner_id"], name: "index_topics_on_owner_id"
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_08_14_182811) do
   end
 
   add_foreign_key "topics", "categories"
+  add_foreign_key "topics", "users", column: "challenger_id"
   add_foreign_key "topics", "users", column: "currentCommenter_id"
   add_foreign_key "topics", "users", column: "loser_id"
   add_foreign_key "topics", "users", column: "owner_id"

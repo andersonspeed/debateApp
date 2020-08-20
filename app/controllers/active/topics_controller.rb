@@ -2,10 +2,8 @@ class Active::TopicsController < ApplicationController
 before_action :set_topic
 before_action :check_topic_status, except: :update
 def update
-  @topic.startDebate
-
   @topic.challenger = current_user
-
+  @topic.startDebate
   redirect_to active_topic_path(@topic)
 end
 
@@ -24,7 +22,7 @@ end
 def check_topic_status
   if !@topic.active & !@topic.judging & !@topic.complete
     redirect_to pending_topic_path(@topic)
-  elsif @topic.complete
+  elsif @topic.judging
     redirect_to judging_topic_path(@topic)
   end
 end

@@ -86,7 +86,7 @@ class TopicsController < ApplicationController
     def check_topic_status
       if @topic.active
         redirect_to active_topic_path(@topic)
-      elsif @topic.complete
+      elsif @topic.judging
         redirect_to judging_topic_path(@topic)
       end
     end
