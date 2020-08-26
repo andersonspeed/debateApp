@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 
 <%=  stylesheet_link_tag 'topics', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,7 +10,7 @@
       <td scope = 'row'>  <strong>Title:</strong> <%= @topic.title %> </td>
 </tr>
 <tr>
-      <td scope =  'row'>  <strong>Description:</strong>
+      <td scope =  'row'>  <strong>Position:</strong>
        <%= @topic.description %> </td>
 <tr>
       <td scope =  'row'>  <strong>Number of Replies:</strong>
@@ -29,6 +29,6 @@
 </table>
 </div>
 </div>
-<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_topic_path(@topic), class: 'btn btn-primary' )%></td>
+<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_topic_path(@topic), class: 'btn btn-primary' ){}%></td>
+<%= link_to_if(@topic.open,'Join', active_topic_path(@topic), method: :patch, class: 'btn btn-primary'){} %>
 <%= link_to 'Back to Browse', topics_path, class: 'btn btn-light' %>
-<%= link_to_if(@topic.open,'Join', active_topic_path(@topic), method: :patch){} %>
