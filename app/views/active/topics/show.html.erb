@@ -1,34 +1,56 @@
-<p>Active Topic</p>
 
+<%= stylesheet_link_tag 'comments', media: 'all', 'data-turbolinks-track': 'reload' %>
 <p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @topic.description %>
-</p>
-<p>
-  <strong>Max Replies:</strong>
-  <%= @topic.numReplies %>
-</p>
-<p>
-  <strong>Wager:</strong>
-  <%= @topic.wager %>
-</p>
-
-<p>
-  <strong>Creator:</strong>
+  <strong>Owner:</strong>
   <%= @topic.owner.username %>
-</p>
 
-<p>
   <strong>Challenger:</strong>
   <%= @topic.challenger.username %>
+
+  <strong>Max Replies:</strong>
+  <%= @topic.numReplies %>
+
+  <strong>Wager:</strong>
+  $<%= @topic.wager %>
+
+
+</p>
+<h3><%= @topic.title %></h3>
+<p> <strong><%=@topic.owner.username%>'s Position:</strong>
+<%= @topic.description %>
 </p>
 
-<%= render @topic.comments, namespace: 'active'%>
+<div class = 'container' style= 'width: 60%'>
+  <table class="table table-borderless table-sm table-dark">
+    <thead>
+      <tr>
+        <th scope="col">
+        <%if @topic.owner != current_user%>
+        <h4><u><strong> <%= @topic.owner.username%> </strong></u></h4>
+        <%elsif @topic.challenger != current_user%>
+        <h4><u><strong> <%=@topic.challenger.username%> </strong> </u></h4>
+        <%end%>
+        </th>
+        <th scope="col">
+        <% if @topic.owner == current_user%>
+        <h4><u><strong> <%=@topic.owner.username%> </strong</u></h4>
+        <%elsif @topic.challenger == current_user%>
+        <h4><u><strong> <%=@topic.challenger.username%> </strong> </u></h4>
+        <%end%>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+       <td scope='row', colspan ='2'><%=render @topic.comments, namespace: 'active'%></td>
+      </tr>
+</tbody>
+</table>
+</div>
 
-<%= render 'active/comments/form' if @topic.currentCommenter == current_user%>
 
-<%= link_to 'Back', topics_path %>
+
+
+<%= render 'active/comments/form' if @topic.currentCommenter == current_user%><br/>
+
+<%= link_to 'Back to Browse', topics_path, class: 'btn btn-light' %>

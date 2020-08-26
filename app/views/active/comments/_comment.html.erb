@@ -1,2 +1,8 @@
-<p><strong><%= comment.owner.username %>:</strong>
-<%= comment.content %></p>
+<% if comment.owner == current_user%>
+<div class='msg_cotainer_send float-right'>
+<%= comment.content %></div><br/><br/>
+<%else%>
+<div class='msg_cotainer float-left'>
+<%= comment.content %></div><br/><br/>
+
+<%end%>

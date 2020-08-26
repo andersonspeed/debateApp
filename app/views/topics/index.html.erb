@@ -1,6 +1,5 @@
 
 
-
 <h1>Topics</h1>
 
 
@@ -8,7 +7,7 @@
   <thead>
     <tr>
       <th scope = 'col'>Title</th>
-      <th scope = 'col'>Description</th>
+      <th scope = 'col'>Position</th>
       <th scope = 'col'>Replies</th>
       <th scope = 'col'>Wager</th>
       <th scope = 'col'>Owner</th>
@@ -28,12 +27,18 @@
         <td><%= topic.numReplies %></td>
         <td>$<%= topic.wager %></td>
         <td><%= topic.owner.username %></td>
-        <td><%= link_to 'Show', topic, class: 'btn btn-light' %></td>
-        <td><%= link_to_if(topic.owner == current_user, 'Edit', edit_topic_path(topic), class: 'btn btn-light' ){}%></td>
-        <td><%= link_to_if(topic.owner == current_user, 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light'){}%></td>
+        <td class = 'text-left'>
+            <%= link_to_if(!topic.active, 'Show', topic, class: 'btn btn-light'){}%>
+            <%if topic.active && (current_user == topic.challenger || current_user == topic.owner) %>
+            <%=link_to('Show', topic, class: 'btn btn-light')%>
+            <%elsif topic.active%>
+            <button class= 'btn btn-danger disabled', style = 'width: 105%'>Active Topic</button>
+            <%end%>
+        <%= link_to_if(topic.owner == current_user, 'Edit', edit_topic_path(topic), class: 'btn btn-light'){}%>
+        <%= link_to_if(topic.owner == current_user, 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light'){}%></td>
       </tr>
-    <% end %>
-    <% end %>
+      <% end %>
+      <% end %>
   </tbody>
 </table>
 
