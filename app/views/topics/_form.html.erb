@@ -11,22 +11,22 @@
 </div>
 <% end %>
 
-
+<div class="container" style = 'width: 70%'>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Title
     </span>
   </div>
-  <%= form.text_field :title class: 'form-control' %>
+  <%= form.text_field :title, class: 'form-control' %>
 </div>
 
 
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Description
+    <span class="input-group-text" id="basic-addon1">Position
     </span>
   </div>
-  <%= form.text_field :description 'Position', class: 'form-control' %>
+  <%= form.text_field :description, class: 'form-control' %>
 </div>
 
 <div class="input-group mb-3">
@@ -50,6 +50,7 @@
   <div class="input-group-prepend">
   <%=link_to "New Category", new_category_path, class: 'btn btn-light' %>
   <%=collection_select(:topic, :category_id, cats.all, :id, :name, prompt: 'Select Existing Category')%>
+</div>
 </div>
 </div>
 

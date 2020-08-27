@@ -34,7 +34,10 @@ class TopicsController < ApplicationController
   def create
     @categories = Category.all
     @topic = Topic.new(topic_params)
-
+    @topic.owner = current_user
+    @topic.open = true;
+    @topic.active = false;
+    @topic.complete = false;
 
     @topic.owner = current_user
     respond_to do |format|

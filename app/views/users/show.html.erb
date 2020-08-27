@@ -1,36 +1,46 @@
-<p>User page</p>
+<%= stylesheet_link_tag 'user_profile', media: 'all', 'data-turbolinks-track': 'reload' %>
+<h3>User Profile: <%= @user.username %></h3>
 <p>
-  <strong><%= @user.username %></strong>
-</p>
-<p><strong>My topics</strong></p>
-<table cellspacing="0">
+  <strong>Arguit Record:</strong> <%=@user.winner_topics.count%> - <%=@user.winner_topics.count%></p>
+<div class = 'row justify-content-center'>
+<table class="table table-responsive table-dark" style = 'width: 70%'>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Replies</th>
-      <th>Wager</th>
-      <th>Owner</th>
-      <th colspan="3"></th>
+      <th scope = 'col', colspan = '8'><h4><u>Topics I Own</u></h4></th>
+      </tr>
+    <tr>
+      <th scope = 'col'>Title</th>
+      <th scope = 'col'>Position</th>
+      <th scope = 'col'>Replies</th>
+      <th scope = 'col'>Wager</th>
+      <th scope = 'col'>Owner</th>
+      <th scope = 'col', colspan = '3'>Action</th>
     </tr>
   </thead>
+
   <tbody>
-    <%= render @user.topics %>
+    <%= render @user.topics%>
+
   </tbody>
 </table>
-<p><strong>topics I've challenged</strong></p>
-<table cellspacing="0">
+<table class="table table-responsive table-dark" style = 'width: 70%'>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Replies</th>
-      <th>Wager</th>
-      <th>Owner</th>
-      <th colspan="3"></th>
+      <th scope = 'col', colspan = '8'><h4><u>Topics I've Challenged</u></h4></th>
+      </tr>
+    <tr>
+      <th scope = 'col'>Title</th>
+      <th scope = 'col'>Position</th>
+      <th scope = 'col'>Replies</th>
+      <th scope = 'col'>Wager</th>
+      <th scope = 'col'>Owner</th>
+      <th scope = 'col', colspan = '3'>Action</th>
     </tr>
   </thead>
+
   <tbody>
-    <%= render @user.challenger_topics %>
+    <%= render @user.challenger_topics%>
+
   </tbody>
 </table>
+</div>

@@ -32,10 +32,7 @@ class Pending::TopicsController < ApplicationController
   def create
     @categories = Category.all
     @topic = Topic.new(topic_params)
-
-
     @topic.owner = current_user
-    @topic.startDebate
     @topic.open = true;
     @topic.active = false;
     @topic.complete = false;

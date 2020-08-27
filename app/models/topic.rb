@@ -36,6 +36,7 @@ class Topic < ApplicationRecord
 
   def sendDebateToJudging
     self.active = false
+    self.complete = true
     self.judging  = true
     self.save
   end

@@ -1,5 +1,6 @@
 
 <%= stylesheet_link_tag 'comments', media: 'all', 'data-turbolinks-track': 'reload' %>
+
 <p>
   <strong>Owner:</strong>
   <%= @topic.owner.username %>
@@ -15,12 +16,14 @@
 
 
 </p>
+
 <h3><%= @topic.title %></h3>
 <p> <strong><%=@topic.owner.username%>'s Position:</strong>
 <%= @topic.description %>
-</p>
+</p><br>
 
-<div class = 'container' style= 'width: 60%'>
+
+<div class = 'container' style= 'width: 40%'>
   <table class="table table-borderless table-sm table-dark">
     <thead>
       <tr>
