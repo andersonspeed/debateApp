@@ -10,11 +10,8 @@
               </div>
             </div>
 
-            <div id= 'content'>
-              </div>
-
             <div class = 'row justify-content-center'>
-            <h4>My Active Topics</h4>
+            <h4>My Judgments</h4>
             <table class="table table-responsive table-dark" style = 'width: 70%'>
             <thead>
               <tr>
@@ -23,20 +20,15 @@
                 <th scope = 'col'>Replies</th>
                 <th scope = 'col'>Wager</th>
                 <th scope = 'col'>Owner</th>
-                <th scope = 'col'>Whose Turn?</th>
                 <th scope = 'col', colspan = '3'>Action</th>
               </tr>
             </thead>
 
             <tbody>
-              <% for topic in @user.topics do%>
-              <% if topic.active%>
-              <%=render topic%>
-              <% end %>
-              <% end %>
+              <%=render @user.judgements%>
 
             </tbody>
             </table>
-
             </div>
-<%=link_to "Browse All Open Topics", topics_path, class: 'btn btn-primary'%>
+
+            <%=link_to "Browse All Open Topics", topics_path, class: 'btn btn-primary'%>

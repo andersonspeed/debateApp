@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+
+
   resources :categories
   devise_for :users
+  get 'users/:id/show_open_topics', to: 'users#show_open_topics', as: 'show_open_topics'
+  get 'users/:id/show_completed_topics', to: 'users#show_completed_topics', as: 'show_completed_topics'
+  get 'users/:id/show_judgments', to: 'users#show_judgments', as: 'show_judgments'
+  resources :users, only: [:show]
   resources :users, only: [:show]
   get 'home_page/index'
   resources :topics do

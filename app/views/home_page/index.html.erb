@@ -2,6 +2,6 @@
 <main class="row justify-content-center px-3 self-align-center">
   <h1 class= 'text-wrap' style = 'width: 35rem'>Put your money where your mouth is.</h1>
   <p class="lead">
-     <%= link_to("Start Arguing", topics_path, class: 'btn btn-lg btn-light font-weight-bold') %>
+     <%= link_to("Start Arguing", user_path(current_user.id), class: 'btn btn-lg btn-light font-weight-bold') %>
   </p>
 </main>

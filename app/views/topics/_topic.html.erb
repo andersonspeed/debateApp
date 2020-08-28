@@ -1,27 +1,50 @@
-<%if topic.owner.id == current_user.id%>
+<%if topic.open%>
 <tr>
   <td><%= topic.title %></td>
   <td><%= topic.description %></td>
   <td><%= topic.numReplies %></td>
   <td><%= topic.wager %></td>
   <td><%= topic.owner.username %></td>
-  <td class= 'text-left' style = 'width: 29%'><%= link_to_if(!topic.active, 'Show', topic, class: 'btn btn-light'){}%>
-      <%= link_to_if(topic.active, 'Show',active_topic_path(topic), class: 'btn btn-light'){}%>
-  <%=link_to_if((topic.owner_id == current_user.id) && !topic.active, 'Edit', edit_topic_path(topic), class: 'btn btn-light'){}%>
-  <%= link_to_if((topic.owner_id == current_user.id) && !topic.active, 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light'){}%></td>
+  <td class= 'text-left' style = 'width: 29%'>
+  <%= link_to 'Show', topic, class: 'btn btn-light'%>
+  <%=link_to_if((topic.owner_id == current_user.id), 'Edit', edit_topic_path(topic), class: 'btn btn-light'){}%>
+  <%= link_to_if((topic.owner_id == current_user.id), 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light'){}%></td>
 
 </tr>
-<%elsif topic.challenger.id == current_user.id%>
+<%elsif topic.active%>
 <tr>
   <td><%= topic.title %></td>
   <td><%= topic.description %></td>
   <td><%= topic.numReplies %></td>
   <td><%= topic.wager %></td>
   <td><%= topic.owner.username %></td>
-  <td><%= link_to_if(!topic.active, 'Show',topic, class: 'btn btn-light'){}%>
-      <%= link_to_if(topic.active, 'Show',active_topic_path(topic), class: 'btn btn-light'){}%></td>
+  <td><%if current_user.id == topic.currentCommenter_id%>
+      <button type='button' class = 'btn btn-success btn-sm active' disabled>My Turn</button>
+      <%elsif current_user.id != topic.currentCommenter_id && (current_user.id == topic.challenger_id)%>
+      <button type='button' class = 'btn btn-danger btn-sm active' disabled>
+      <%=topic.owner.username%>'s Turn</button>
+      <%elsif current_user.id != topic.currentCommenter_id && (current_user.id != topic.challenger_id)%>
+      <button type='button' class = 'btn btn-danger btn-sm' disabled>
+      <%=topic.challenger.username%>'s Turn</button>
+      <%end%>
+  <td><%= link_to_if(topic.active, 'Show',active_topic_path(topic), class: 'btn btn-light'){}%></td>
 
+<%elsif topic.complete%>
+<tr>
+  <td><%= topic.title %></td>
+  <td><%= topic.description %></td>
+  <td><%= topic.numReplies %></td>
+  <td><%= topic.wager %></td>
+  <td><%= topic.owner.username %></td>
+  <td><%if current_user.id == topic.winner_id%>
+      <button type='button' class = 'btn btn-success btn-sm bg-secondary text-white active' disabled>Won</button>
+      <%elsif current_user.id == topic.loser_id%>
+      <button type='button' class = 'btn btn-danger btn-sm active' disabled>
+      Lost</button>
+      <%else%>
+      <button type='button' class = 'btn btn-secondary btn-sm' disabled>
+      Pending</button>
+      <%end%>
+  <td><%= link_to 'Show',active_topic_path(topic), class: 'btn btn-light'%></td>
 
-<%else%>
-<td><%= link_to_if(topic.judging && (topic.owner_id != current_user.id && topic.challenger_id != current_user.id), 'Judge', judging_topic_path(topic)){}%></td>
 <%end%>
