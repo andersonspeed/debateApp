@@ -1,6 +1,3 @@
-
-
-
 <%=  stylesheet_link_tag 'topics', media: 'all', 'data-turbolinks-track': 'reload' %>
   <div class="row justify-content-center text-left" >
     <div class="col-auto">
@@ -29,6 +26,6 @@
 </table>
 </div>
 </div>
-<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_topic_path(@topic), class: 'btn btn-primary' ){}%></td>
-<%= link_to_if(@topic.open,'Join', active_topic_path(@topic), method: :patch, class: 'btn btn-primary'){} %>
+<%= link_to_if(@topic.owner_id == current_user.id, 'Edit', edit_topic_path(@topic), class: 'btn btn-primary' ){}%>
+<%= link_to_if(!@topic.active && (@topic.owner_id != current_user.id), 'Join', active_topic_path(@topic), method: :patch, class: 'btn btn-primary'){}%>
 <%= link_to 'Back to Browse', topics_path, class: 'btn btn-light' %>

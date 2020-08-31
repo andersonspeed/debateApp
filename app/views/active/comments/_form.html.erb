@@ -1,8 +1,10 @@
 <%= form_with(model: [:active, @topic, @topic.comments.build], local: true) do |form| %>
-  <div class="container", style = 'width: 50%'>
+
+  <div class="container", style = 'width: 40%'>
     <%= form.text_area :content, class: 'form-control', placeholder: 'Enter Reply' %>
   </div>
   <div class="actions">
     <%= form.submit "Send", class: 'btn btn-primary'  %>
   </div>
+
 <% end %>
