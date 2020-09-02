@@ -10,8 +10,6 @@
               </div>
             </div>
 
-            <div id= 'content'>
-              </div>
 
             <div class = 'row justify-content-center'>
             <h4>My Active Topics</h4>
@@ -29,8 +27,8 @@
             </thead>
 
             <tbody>
-              <% for topic in @user.topics do%>
-              <% if topic.active%>
+              <% for topic in @topics do%>
+              <% if topic.active && (current_user == topic.challenger or current_user == topic.owner)%>
               <%=render topic%>
               <% end %>
               <% end %>

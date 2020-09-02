@@ -19,7 +19,7 @@
   <td><%= topic.wager %></td>
   <td><%= topic.owner.username %></td>
   <td><%if current_user.id == topic.currentCommenter_id%>
-      <button type='button' class = 'btn btn-success btn-sm active' disabled>My Turn</button>
+      <%=link_to 'My Turn', active_topic_path(topic), class: 'btn btn-success btn-sm active'%>
       <%elsif current_user.id != topic.currentCommenter_id && (current_user.id == topic.challenger_id)%>
       <button type='button' class = 'btn btn-danger btn-sm active' disabled>
       <%=topic.owner.username%>'s Turn</button>

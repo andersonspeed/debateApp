@@ -1,4 +1,4 @@
-<h1>Topics in <%=@category.name%></h1>
+<h1>Open Judgments</h1>
 
 <div class ='row justify-content-center'>
 <table  class="table table-responsive table-dark" style= 'width: 70%'>
@@ -15,26 +15,24 @@
   </thead>
 
   <tbody>
-    <% (@category.topics).each do |topic| %>
-    <%if !topic.complete && !topic.active%>
+    <% @categories.each do |cat| %>
+    <% @topics.where("category_id = ?", cat.id).each_with_index do |topic| %>
+    <%if canJudge(current_user, topic)%>
       <tr>
         <td class = 'text-left'><%= topic.title %></td>
         <td class = 'text-left'><%= topic.description %></td>
         <td><%= topic.numReplies %></td>
         <td>$<%= topic.wager %></td>
         <td><%= topic.owner.username %></td>
-        <td class = 'text-left' style = "width: 29%">
-        <%= link_to 'Show', topic, class: 'btn btn-light'%>
-        <%= link_to_if(topic.owner == current_user, 'Edit', edit_topic_path(topic), class: 'btn btn-light'){}%>
-        <%= link_to_if(topic.owner == current_user, 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light'){}%></td>
+        <td style = "width: 15%">
+        <%= link_to 'Judge', judging_topic_path(topic), class: 'btn btn-light'%>
       </tr>
       <% end %>
       <% end %>
-    </tbody>
-  </table>
+      <% end %>
+  </tbody>
+</table>
 
-  <br>
-  </div>
-
-
-<%= link_to 'Back to Browse Categories', categories_path, class: 'btn btn-light' %>
+<br>
+</div>
+<%= link_to 'New Topic', new_pending_topic_path, class: 'btn btn-primary' %>

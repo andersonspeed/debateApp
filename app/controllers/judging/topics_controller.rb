@@ -1,9 +1,13 @@
 class Judging::TopicsController < ApplicationController
-  before_action :set_topic
-  before_action :check_topic_status
+  before_action :set_topic, only: [:show]
+  before_action :check_topic_status, except: [:index]
 
   def show
+  end
 
+  def index
+    @categories = Category.all
+    @topics = Topic.all
   end
 
   private

@@ -1,25 +1,49 @@
-<p>Complete Topic</p>
+<%= stylesheet_link_tag 'comments', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @topic.description %>
-</p>
-<p>
+  <strong>Owner:</strong>
+  <%= @topic.owner.username %>
+
+  <strong>Challenger:</strong>
+  <%= @topic.challenger.username %>
+
   <strong>Max Replies:</strong>
   <%= @topic.numReplies %>
-</p>
-<p>
+
   <strong>Wager:</strong>
-  <%= @topic.wager %>
+  $<%= @topic.wager %>
+
+
 </p>
+
+<h3><%= @topic.title %></h3>
+<p> <strong><%=@topic.owner.username%>'s Position:</strong>
+<%= @topic.description %>
+</p><br>
+
+
+<div class = 'container' style= 'width: 40%'>
+  <table class="table table-borderless table-sm table-dark">
+    <thead>
+      <tr>
+        <th scope="col">
+        <h4><u><strong> <%= @topic.challenger.username%> </strong></u></h4>
+        </th>
+        <th scope="col">
+        <h4><u><strong> <%=@topic.owner.username%> </strong> </u></h4>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+       <td scope='row', colspan ='2'><%= render partial: 'judging/comments/comment', collection: @topic.comments %>
+      </tr>
+</tbody>
+</table>
+</div>
 <p>
-<%= render partial: 'judging/comments/comment', collection: @topic.comments %>
 <% if canJudge(current_user,@topic)%>
 <%= render(partial: 'judging/judgements/form', topic: @topic) %>
 <% end %>
 </p>
-<%= link_to 'Back', topics_path %>
+<%= link_to 'Back to Browse', topics_path, class: 'btn btn-light'%>

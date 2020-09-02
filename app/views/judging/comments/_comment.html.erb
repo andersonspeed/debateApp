@@ -1,7 +1,11 @@
-<p><strong><%if comment.owner == comment.topic.owner %>
-  Creator:
-  <%else%>
-  Challenger:
-  <%end%>
-  </strong>
-<%= comment.content %></p>
+<div class= 'clearfix'>
+<% if comment.owner == @topic.owner%>
+<div class='msg_cotainer_send float-right'>
+<%= comment.content %></div><br/><br/>
+<%end%>
+<%if comment.owner == @topic.challenger%>
+<div class='msg_cotainer float-left'>
+<%= comment.content %></div><br/><br/>
+
+<%end%>
+</div>
