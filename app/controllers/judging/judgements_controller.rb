@@ -14,7 +14,7 @@ class Judging::JudgementsController < ApplicationController
 
     respond_to do |format|
       if @judgement.save
-        format.html { redirect_to judging_topic_path(@topic), notice: 'Comment was successfully created.' }
+        format.html { redirect_to judging_topic_path(@topic), notice: 'Judgment was successfully created.' }
         format.json { render :show, status: :created, location: @judgement }
       else
         format.html { render :new }

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   namespace :judging do
+    resources :categories
     resources :topics do
       resources :comments
       resources :judgements

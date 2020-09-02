@@ -1,0 +1,40 @@
+<h1>Topics in <%=@category.name%></h1>
+
+<div class ='row justify-content-center'>
+<table  class="table table-responsive table-dark" style= 'width: 70%'>
+  <thead>
+    <tr>
+      <th scope = 'col'>Title</th>
+      <th scope = 'col'>Position</th>
+      <th scope = 'col'>Replies</th>
+      <th scope = 'col'>Wager</th>
+      <th scope = 'col'>Owner</th>
+      <th scope = 'col'>Action</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% (@category.topics).each do |topic| %>
+
+      <%if canJudge(current_user, topic) && topic%>
+        <tr>
+          <td class = 'text-left'><%= topic.title %></td>
+          <td class = 'text-left'><%= topic.description %></td>
+          <td><%= topic.numReplies %></td>
+          <td>$<%= topic.wager %></td>
+          <td><%= topic.owner.username %></td>
+          <td style = "width: 15%">
+          <%= link_to 'Judge', judging_topic_path(topic), class: 'btn btn-light'%>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  </div>
+
+
+<%= link_to 'Back to Browse Categories', categories_path, class: 'btn btn-light' %>
