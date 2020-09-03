@@ -10,8 +10,8 @@
   </ul>
 </div>
 <% end %>
-
-<div class="input-group mb-3">
+<div class = 'row justify-content-center'>
+<div class="input-group mb-3" style= 'width: 50%'>
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Category Name
     </span>
@@ -22,5 +22,6 @@
 <div class="actions">
   <%= form.submit "Create Category", class:'btn btn-primary' %>
   <%= link_to 'Back to Browse', topics_path, class: 'btn btn-light' %>
+</div>
 </div>
 <% end %>

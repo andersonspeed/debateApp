@@ -1,5 +1,7 @@
 <h1>Open Judgments</h1>
-
+<%if @topics.none? {|topic| canJudge(current_user, topic)} %>
+<br><br><h3> Nothing here.</h3><br>
+<%else%>
 <div class ='row justify-content-center'>
 <table  class="table table-responsive table-dark" style= 'width: 70%'>
   <thead>
@@ -9,6 +11,7 @@
       <th scope = 'col'>Replies</th>
       <th scope = 'col'>Wager</th>
       <th scope = 'col'>Owner</th>
+      <th scope = 'col'>Challenger</th>
       <th scope = 'col'>Action</th>
 
     </tr>
@@ -22,8 +25,9 @@
         <td class = 'text-left'><%= topic.title %></td>
         <td class = 'text-left'><%= topic.description %></td>
         <td><%= topic.numReplies %></td>
-        <td>$<%= topic.wager %></td>
+        <td><%= number_to_currency(topic.wager) %></td>
         <td><%= topic.owner.username %></td>
+        <td><%= topic.challenger.username %></td>
         <td style = "width: 15%">
         <%= link_to 'Judge', judging_topic_path(topic), class: 'btn btn-light'%>
       </tr>
@@ -35,4 +39,6 @@
 
 <br>
 </div>
-<%= link_to 'New Topic', new_pending_topic_path, class: 'btn btn-primary' %>
+<%end%>
+
+<%= link_to 'Browse Open Topics', categories_path, class: 'btn btn-light' %>

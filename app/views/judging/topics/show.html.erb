@@ -11,7 +11,7 @@
   <%= @topic.numReplies %>
 
   <strong>Wager:</strong>
-  $<%= @topic.wager %>
+  <%= number_to_currency(@topic.wager) %>
 
 
 </p>
@@ -26,10 +26,10 @@
   <table class="table table-borderless table-sm table-dark">
     <thead>
       <tr>
-        <th scope="col">
+        <th scope="col" style= 'width: 50%'>
         <h4><u><strong> <%= @topic.challenger.username%> </strong></u></h4>
         </th>
-        <th scope="col">
+        <th scope="col" style= 'width: 50%'>
         <h4><u><strong> <%=@topic.owner.username%> </strong> </u></h4>
         </th>
       </tr>

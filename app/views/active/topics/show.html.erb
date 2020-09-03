@@ -12,7 +12,7 @@
   <%= @topic.numReplies %>
 
   <strong>Wager:</strong>
-  $<%= @topic.wager %>
+  <%= number_to_currency(@topic.wager) %>
 
 
 </p>
@@ -23,18 +23,18 @@
 </p><br>
 
 
-<div class = 'container' style= 'width: 40%'>
+<div class = 'container ' style= 'width: 40%'>
   <table class="table table-borderless table-sm table-dark">
     <thead>
       <tr>
-        <th scope="col">
+        <th scope="col" style= 'width: 50%'>
         <%if @topic.owner != current_user%>
         <h4><u><strong> <%= @topic.owner.username%> </strong></u></h4>
         <%elsif @topic.challenger != current_user%>
         <h4><u><strong> <%=@topic.challenger.username%> </strong> </u></h4>
         <%end%>
         </th>
-        <th scope="col">
+        <th scope="col" style= 'width: 50%'>
         <% if @topic.owner == current_user%>
         <h4><u><strong> <%=@topic.owner.username%> </strong</u></h4>
         <%elsif @topic.challenger == current_user%>

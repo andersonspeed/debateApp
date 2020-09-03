@@ -12,6 +12,11 @@
 
             <div class = 'row justify-content-center'>
             <h4>My Completed Topics</h4>
+
+            <%if (@topics).none? {|topic| topic.complete && (current_user == topic.challenger or current_user == topic.owner)}%>
+            <br><br><br><h3> Nothing here. Get arguing! </h3>
+            <%else%>
+
             <table class="table table-responsive table-dark" style = 'width: 70%'>
             <thead>
               <tr>
@@ -20,19 +25,21 @@
                 <th scope = 'col'>Replies</th>
                 <th scope = 'col'>Wager</th>
                 <th scope = 'col'>Owner</th>
+                <th scope = 'col'>Challenger</th>
                 <th scope = 'col'>Result</th>
                 <th scope = 'col', colspan = '3'>Action</th>
               </tr>
             </thead>
 
             <tbody>
-              <% for topic in @user.topics do%>
-              <% if topic.complete%>
+              <% for topic in @topics do%>
+              <% if topic.complete && (current_user == topic.challenger or current_user == topic.owner)%>
               <%=render topic%>
               <% end %>
               <% end %>
 
             </tbody>
+            <%end%>
             </table>
             </div>
     <%=link_to "Browse All Open Topics", topics_path, class: 'btn btn-primary'%>

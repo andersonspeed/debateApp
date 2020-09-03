@@ -10,15 +10,15 @@
               </div>
             </div>
 
-            <div id ='content'>
-
-              </div>
-
-
-
 
             <div class = 'row justify-content-center'>
             <h4>My Open Topics</h4>
+
+            <%if (@user.topics).none? {|topic| topic.open}%>
+            <br><br><br><h3> Nothing here. Get arguing! </h3>
+
+            <%else%>
+
             <table class="table table-responsive table-dark" style = 'width: 70%'>
             <thead>
               <tr>
@@ -39,6 +39,8 @@
               <% end %>
 
             </tbody>
+            <%end%>
             </table>
             </div>
+
             <%=link_to "Browse All Open Topics", topics_path, class: 'btn btn-primary'%>
