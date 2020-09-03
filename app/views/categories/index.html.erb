@@ -1,38 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categories</h1><br>
+<h1>Categories</h1>
 <div class = 'row justify-content-center'>
-<table style= 'width: 50%'>
-  <thead>
-    <tr>
-      <th><u>Open for Argument</u></th>
-      <th><u>Open for Judgment</u></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class ='container text-left pl-3' style= 'width: 32em'>
     <% @categories.each do |cat| %>
-    <%if (cat.topics).any? {|topic| topic.open}%>
-      <tr>
-        <td><%= link_to cat.name, cat, class: 'btn btn-light m-2'%>
-        </td>
+    <%if ((cat.topics).any? {|topic| topic.open}) or ((cat.topics).none?)%>
+
+        <%= link_to cat.name, cat, class: 'btn btn-light m-2 ml-4', style: 'width: 7.6em'%>
 
       <%end%>
-      <%if (cat.topics).any? {|topic| canJudge(current_user, topic)}%>
-          <td><%= link_to cat.name, judging_category_path(cat), class: 'btn btn-light m-2'%>
-
-          </td>
-        <% end %>
       <% end %>
-        </tr>
-        <tr>
-          <td>
-            <%= link_to "Browse All Open Topics", topics_path, class: 'btn btn-primary'%>
-            </td>
-          <td>
-            <%= link_to "Browse All Open Judgments", judging_topics_path, class: 'btn btn-primary'%>
-          </td>
-        </tr>
-  </tbody>
-</table>
+
+
+</div>
 </div>
 <br>
+<%=link_to "New Category", new_category_path, class: 'btn btn-primary' %>
+<%= link_to "Browse All Open Topics", topics_path, class: 'btn btn-light'%>

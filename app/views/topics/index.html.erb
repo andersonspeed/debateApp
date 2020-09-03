@@ -1,4 +1,4 @@
-<h1>Topics</h1>
+<h1>Open Topics</h1>
 
 <div class ='row justify-content-center'>
 <table  class="table table-responsive table-dark" style= 'width: 70%'>
@@ -22,7 +22,7 @@
         <td class = 'text-left'><%= topic.title %></td>
         <td class = 'text-left'><%= topic.description %></td>
         <td><%= topic.numReplies %></td>
-        <td>$<%= topic.wager %></td>
+        <td><%= number_to_currency(topic.wager) %></td>
         <td><%= topic.owner.username %></td>
         <td class = 'text-left' style = "width: 29%">
         <%= link_to 'Show', topic, class: 'btn btn-light'%>
@@ -38,3 +38,4 @@
 <br>
 </div>
 <%= link_to 'New Topic', new_pending_topic_path, class: 'btn btn-primary' %>
+<%= link_to 'Back to Browse Categories', categories_path, class: 'btn btn-light' %>

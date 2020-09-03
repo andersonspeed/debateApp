@@ -3,7 +3,7 @@
   <td><%= topic.title %></td>
   <td><%= topic.description %></td>
   <td><%= topic.numReplies %></td>
-  <td><%= topic.wager %></td>
+  <td><%= number_to_currency(topic.wager) %></td>
   <td><%= topic.owner.username %></td>
   <td class= 'text-left' style = 'width: 29%'>
   <%= link_to 'Show', topic, class: 'btn btn-light'%>
@@ -16,7 +16,7 @@
   <td><%= topic.title %></td>
   <td><%= topic.description %></td>
   <td><%= topic.numReplies %></td>
-  <td><%= topic.wager %></td>
+  <td><%= number_to_currency(topic.wager) %></td>
   <td><%= topic.owner.username %></td>
   <td><%if current_user.id == topic.currentCommenter_id%>
       <%=link_to 'My Turn', active_topic_path(topic), class: 'btn btn-success btn-sm active'%>
@@ -34,8 +34,9 @@
   <td><%= topic.title %></td>
   <td><%= topic.description %></td>
   <td><%= topic.numReplies %></td>
-  <td><%= topic.wager %></td>
+  <td><%= number_to_currency(topic.wager) %></td>
   <td><%= topic.owner.username %></td>
+  <td><%= topic.challenger.username %></td>
   <td><%if current_user.id == topic.winner_id%>
       <button type='button' class = 'btn btn-success btn-sm bg-secondary text-white active' disabled>Won</button>
       <%elsif current_user.id == topic.loser_id%>
